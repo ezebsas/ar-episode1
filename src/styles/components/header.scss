@@ -16,8 +16,16 @@
     }
   }
   .nav {
+    width: 25px;
+    @include media('<=phone'){ //the place to find this phone breakpoint is in the breakpoints.scss file, we are not limited to the ones defined, we can also use px
+      width: 20px;
+    }
     span {
-
+      margin-bottom: .3rem;
+      background: $black;
+      height: 2px;
+      width: 100%; //the width is 100% of its parent so that's means that the width is going to be 25px and 20px on the phones
+      display: block;
     }
   }
 }
