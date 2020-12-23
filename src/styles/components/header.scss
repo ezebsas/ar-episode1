@@ -1,7 +1,18 @@
-header {
+.header {
+  position: fixed; // this will allow us to stay in position while scrolling
+  width: 100%;
+  height: 128px;
+  z-index: 4; //this is for when we scroll above other elements is always going to be in the front
+  @include media('<=phone') { // these media queries are going to be throughout the project
+    height: 96px; // we want the height to shrink when the viewport gets smaller and it gets all the way to a phone device 
+  }
   .logo {
     a {
-
+      font-size: 1.2rem; // relative to the html's font size and that is equivalent to 16px
+      letter-spacing: 0.05rem;
+      color: $black; // this variable is coming from our variable sass
+      text-decoration: none;
+      font-weight: 700;
     }
   }
   .nav {
