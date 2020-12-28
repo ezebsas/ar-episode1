@@ -76,11 +76,58 @@ html {
       bottom: 0;
       left: 0;
       right: 0;
+      @include media('<=tablet') {
+        width: 100vw;
+      }
+      &:nth-child(2) {
+        left: 33.333%;
+        @include media('<=tablet'){
+          display: none;
+        }
+      }
+      &:nth-child(3) {
+        left: 66.666%;
+        @include media('<=tablet'){
+          display: none;
+        }
+      }
     }
   }
   .bottom {
+    height: 50vh;
+    height: calc(var(--vh, 1vh) * 50);
+    position: absolute;
+    bottom: 0; // this is to move it to the bottom half
+    width: 100%;
+    z-index: 8;
     .overlay-bottom {
-
+      position: absolute;
+      height: 100%;
+      width: 33.333vw;
+      background: $black;
+      bottom: 0; 
+      //we dont have left anymore becuase with gsap we are transitioning the width of the animation from left to right
+      //and if you define left here we are going to define origin in gsap which is a bit complicated, so this is a better solution 
+      right: 66.666%;
+      @include media('<=tablet') {
+        right: 0;
+        width: 100vw;
+      }
+      &:nth-child(2) {
+        left: 33.333%;
+        @include media('<=tablet'){
+          width: 100vw;
+          top: 100%;
+          right: 0;
+        }
+      }
+      &:nth-child(3) {
+        right: 0;
+        @include media('<=tablet'){
+          width: 100vw;
+          top: 200%;
+        }
+      }
     }
   }
 }
