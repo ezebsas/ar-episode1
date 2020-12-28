@@ -114,7 +114,7 @@ html {
         width: 100vw;
       }
       &:nth-child(2) {
-        left: 33.333%;
+        right: 33.333%;
         @include media('<=tablet'){
           width: 100vw;
           top: 100%;
