@@ -1,57 +1,64 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, WithRouter } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import { ReactComponent as UpArrow } from '../assets/up-arrow-circle.svg';
 import gsap from 'gsap';
 
 let tl = gsap.timeline();
 
-const Header = ({ dimensions }) => {
+const Header = ({ history, dimensions }) => {
   const [menuState, setMenuState] = useState({menuOpened: false});
 
   useEffect(() => {
+    history.listen(() => {
+      setMenuState({ menuOpened: false});
+    });
     if(menuState.menuOpened === true){
       //Run open menu animation
-      gsap.to('nav', {css: {display: 'block'}})
-      gsap.to('body', {css: {overflow: 'hidden'}})
-
-      tl.to('.App', {
+      tl.to('body', { duration: 0.01, css: {overflow: 'hidden'}})
+      .to('.App', {
         duration: 1,
         y: dimensions.width <= 654 ? '70vh' : dimensions.height / 2,
         ease: 'expo.inOut'
-      }).to('.hamburger-menu span', {
+      })
+      .to('.hamburger-menu span', {
         duration: 0.6,
         delay: -1,
         scaleX: 0,
         transformOrigin: '50% 0',
         ease: 'expo.inOut'
-      }).to('#Path_1', {
+      })
+      .to('#Path_1', {
         duration: 0.4,
         delay: -0.6,
         css: {
           strokeDashoffset: 10,
           strokeDasharray: 5
         }
-      }).to('#Path_2', {
+      })
+      .to('#Path_2', {
         duration: 0.4,
         delay: -0.6,
         css: {
           strokeDashoffset: 10,
           strokeDasharray: 20
         }
-      }).to('#Line_1', {
+      })
+      .to('#Line_1', {
         duration: 0.4,
         delay: -0.6,
         css: {
           strokeDashoffset: 40,
           strokeDasharray: 18
         }
-      }).to('#circle', {
+      })
+      .to('#circle', {
         duration: 0.4,
         delay: -0.6,
         css: {
           strokeDashoffset: 0
         }
-      }).to('.hamburger-menu-close', {
+      })
+      .to('.hamburger-menu-close', {
         duration: 0.4,
         delay: -0.6,
         css: {
@@ -113,12 +120,7 @@ const Header = ({ dimensions }) => {
         css: {
           overflow: 'auto'
         }
-      })
-      .to('nav', {
-        css: {
-          display: 'none'
-        }
-      })
+      });
     }
   }, [menuState.menuOpened])
 
@@ -127,7 +129,7 @@ const Header = ({ dimensions }) => {
       <div className="container">
         <div className="row v-center space-between">
           <div className="logo">
-            <a href="/">AGENCY.</a>
+            <NavLink to="/" exact>AGENCY.</NavLink>
           </div>
           <div className="nav-toggle">
             <div 
@@ -150,5 +152,4 @@ const Header = ({ dimensions }) => {
   )
 }
 
-export default Header
-
+export default withRouter(Header)
