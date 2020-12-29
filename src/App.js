@@ -14,6 +14,7 @@ import Approach from './pages/approach';
 import Services from './pages/services';
 import About from './pages/about';
 
+//routes
 const routes = [
   {path: '/', name: 'Home', Component: Home}, 
   {path: '/case-studies', name: 'Case Studies', Component: CaseStudies}, 
@@ -22,7 +23,16 @@ const routes = [
   {path: '/about-us', name: 'About Us', Component: About}
 ]
 
-//routes
+function debounce (fn, ms) {
+  let timer;
+  return () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      timer = null;
+      fn.apply(this, arguments);
+    }, ms);
+  }
+}
 
 function App() {
   const [dimensions, setDimensions] = useState({
@@ -30,22 +40,22 @@ function App() {
     width: window.innerWidth,
   })
   useEffect(() => {
-    let vh = window.innerHeight * 0.01;
+    let vh = dimensions.height * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`); //here we define the 1 percent of the inner height and set it to the --vh variable
 
     gsap.to('body', {duration: 0, css: {visibility: 'visible'}}); //this sholud be for preventing white text from flashing, but its not working ...
 
-    const HandleResize = () => { //this is a bit redundant because we already defined this but we want to update every single time the window resizes
+    const debouncedHandleResize = debounce(function handleResize()  {
       setDimensions({
         height: window.innerHeight,
-        width: window.innerWidth,
-      })
-    }
+        width: window.innerWidth
+      });
+    }, 1000);
 
-    window.addEventListener('resize', HandleResize)
+    window.addEventListener('resize', debouncedHandleResize)
 
     return () => {
-      window.removeEventListener('resize', HandleResize)
+      window.removeEventListener('resize', debouncedHandleResize)
     }
 
   }, [])
