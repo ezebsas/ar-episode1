@@ -13,12 +13,18 @@ const Navigation = () => {
                 <NavLink to='/case-studies' exact>
                   Case Studies
                 </NavLink>
+              </li>
+              <li>
                 <NavLink to='/approach' exact>
                   Approach
                 </NavLink>
+              </li>
+              <li>
                 <NavLink to='/services' exact>
                   Services
                 </NavLink>
+              </li>
+              <li>
                 <NavLink to='/about-us' exact>
                   About us
                 </NavLink>
