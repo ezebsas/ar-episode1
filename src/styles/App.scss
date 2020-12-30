@@ -8,6 +8,7 @@
 
 body,
 html {
+  visibility: hidden; //this is for preventing the flashing along with the gsap setting in App.js
   user-select: none;
   background: $white;
   overscroll-behavior: none;
@@ -75,6 +76,7 @@ html {
       width: 33.333vw;
       background: $black;
       bottom: 0;
+      // top:0; //if i do this instead the animation is going up instead of down
       left: 0;
       right: 0;
       @include media('<=tablet') {

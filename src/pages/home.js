@@ -25,7 +25,7 @@ const homeAnimation = (completeAnimation) => {
     duration: 1.6,
     width: 0,
     ease: 'expo.inOut',
-    delay: -0.8,
+    delay: -0.8, //it's executing 0.8s before the animation of overlay-top is finished
     stagger: {
       amount: 0.4
     }
@@ -61,7 +61,6 @@ const Home = () => {
   return (
     <>
     {animationComplete === false ? <IntroOverlay /> : ''}
-      <IntroOverlay />
       <Banner />
       <Cases />
     </>

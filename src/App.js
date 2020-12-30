@@ -43,7 +43,7 @@ function App() {
     let vh = dimensions.height * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`); //here we define the 1 percent of the inner height and set it to the --vh variable
 
-    gsap.to('body', {duration: 0, css: {visibility: 'visible'}}); //this sholud be for preventing white text from flashing, but its not working ...
+    gsap.to('body', {duration: 0, css: {visibility: 'visible'}}); //this is for preventing white text from flashing, in the css visibility is hidden at start
 
     const debouncedHandleResize = debounce(function handleResize()  {
       setDimensions({
@@ -58,7 +58,7 @@ function App() {
       window.removeEventListener('resize', debouncedHandleResize)
     }
 
-  }, [])
+  }) //there was no need for dependencies here, now is recaulculating the dimensions all the time that window is resized
   return (
     <>
       <Header dimensions={dimensions} />

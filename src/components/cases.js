@@ -38,7 +38,7 @@ const Cases = () => {
           </div>
         </div>
         <div className="row">
-          {caseStudies.map(caseItem => (
+          {caseStudies.map(caseItem => ( // we need to use parenthesis and not curly braces because we are going to return jsx
             <div className="case" key={caseItem.id}>
               <div className="case-details">
                 <span>{caseItem.subtitle}</span>

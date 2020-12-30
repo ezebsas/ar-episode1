@@ -33,6 +33,7 @@ nav {
     display: flex;
     padding: 0 32px;
     @include media('<=654px') {
+      transform: translateY(75px);
       flex-direction: column;
     }
     @include media('<=phone') {
@@ -92,8 +93,12 @@ nav {
           padding: 0;
           width: 50%;
           margin: 0.5rem 0;
+          @include media('<=654px') {
+            width: 100%;
+          }
           &:nth-child(2),
-          &:nth-child(3) {
+          &:nth-child(3), 
+          &:nth-child(4) {
             @include media('<=654px') { // this is because when we reach the mobile viewport you dont have too much space to work with and need to limit what isn't all neccesary that important
               display: none;
             }

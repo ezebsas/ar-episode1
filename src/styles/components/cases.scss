@@ -10,9 +10,9 @@
     align-items: center;
     z-index: 6;
     padding: 32px;
-    box-sizing: border-box;
+    box-sizing: border-box; //with this the padding isnt adding to the width of the div
     @include media('<=tablet') {
-      display: none;
+      display: none; //when tablet viewport is reached we hide the arrows
     }
     .cases-arrow {
       background: rgba(0,0,0,0.4);
@@ -27,7 +27,7 @@
         height: 28px;
         width: 28px;
       }
-      &.disabled { // what happen when we no longer go left or right we add this opacity
+      &.disabled { // what happen when we no longer go left or right we add this opacity, this is going to happen when the element that has .cases-arrow also have .disabled
         opacity: 0.3;
       }
     }
@@ -40,7 +40,7 @@
       position: relative;
       background: $black;
       cursor: pointer; //when we hover the cases is always going to look clickeable even though it's not
-      &.hover { //when we hover we want that the case image itself to fade out a little bit
+      &:hover { //when we hover we want that the case image itself to fade out a little bit
         .case-image {
           opacity: 0.4;
         }
